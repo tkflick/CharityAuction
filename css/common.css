@@ -1,0 +1,170 @@
+﻿/* Common/Universal */
+body
+{
+	font: 86% Verdana, 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+p {margin-bottom: 10px}
+a {text-decoration: none;}
+h2 {
+	font-weight: bold;
+	line-height: 2.5em;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+h3 {
+	font-weight: bold;
+	line-height: 2.0;
+}
+#PageFrame {
+	width: 900px;
+	margin: 10px auto;
+	text-align: left;
+}
+
+
+/* Page Header */
+#PageHeader {
+}
+#PageHeader h1 {
+	padding: 5px 10px;
+	font-size: 1.5em;
+}
+#PageHeader .Decoration {
+	height: 225px;
+	background-image: url(HeaderDecorations/stables.jpg);	
+	background-image: url(HeaderDecorations/riding.jpg);
+	background-image: url(HeaderDecorations/WhiteHorseInStall.jpg);
+	background-image: url(HeaderDecorations/Carousel.jpg);	
+	background-image: url(HeaderDecorations/GaitedHorse.jpg);
+<?php
+	var image = 'stables.jpg';
+	echo('background-image: url(HeaderDecorations/' +image +')');
+?>
+}
+#PageHeader ul {
+	background-color: #222;
+	padding: 5px;
+}
+#PageHeader li {
+	display: inline;
+	text-transform: uppercase;
+	font-size: .9em;
+}
+#PageHeader a {
+	margin-right: 5px;
+	padding: 0 5px;
+	border-right-style: solid;
+	border-right-width: 2px;
+}
+
+/* Page Body */
+#PageBody {
+	padding: 10px;
+	border-style: solid;
+	border-width: 0 0 2px 0;
+}
+
+
+/* Horses */
+.Horse {
+	overflow: visible;
+	clear: both;
+	border-style: solid;
+	border-width: 0 0 2px 0;
+	margin: 2px 0; 	
+}
+.Horse .Gallery {
+	overflow: hidden;
+	text-align: center;
+	border-width: 0px;
+	float: right;
+	width: 500px !important;
+	height: 375px !important;
+	background-color: #999;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+.Horse table.Details {
+	/*clear: both; */
+	width: 40%;
+	font-size: .9em;
+	border-style: solid;
+	border-width: 1px 0 0 0;
+
+}
+.Horse .Details th, .Horse .Details td {
+	border-style: solid;
+	border-width: 0 0 1px 0;	
+}
+.Horse .Details th {
+	
+	padding-right: 10px; 
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.Horse table.Lineage {
+	margin: 10px auto;
+	clear: both;
+	width: 100%;
+	text-align: center;
+	border-width: 1px;
+	border-style: solid;
+}
+.Horse caption {
+	font-weight: bold;
+}
+.Horse .Lineage th {
+	text-align: center;
+	font-weight: bold;
+}
+.Horse .Lineage .Sire {
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+}
+.Horse .Lineage .Dam {
+	border-style: solid;
+	border-width: 0 1px 1px 0;	
+}
+/* Page Footer */
+#PageFooter {
+	clear: both;
+	text-align: center;
+	margin-top: 10px;
+}
+
+/**********/
+/* Colors */
+/**********/
+#PageBody {
+	background-color: #ffe7c6;
+	border-color: #33473c;
+}
+
+/* Dirt brown */
+h2, .Horse, #Sidebar .Border {border-color: #aa7937;}
+
+#PageHeader a {
+	border-color: #555;
+}
+
+.Horse table, .Horse td, .Horse th {
+	border-color: #ccc;
+}
+/* dark on light */
+#Body {
+	background-color: #eee;
+	color: #111;
+}
+/* light on dark */
+#PageHeader h1, #PageHeader li, #PageHeader a {
+	background-color: #222;
+	color: #ccc;
+}
+#PageHeader a:hover {
+	color: #fff;
+}

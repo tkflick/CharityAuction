@@ -1,0 +1,142 @@
+1) Log into your PayPal account and create a paypal app: 
+	https://developer.paypal.com/developer/applications/create
+	User ID: LionTimF
+	Temporary password: TKF#prez2*
+   save your sandbox and production Client ID values, you will need them later 
+
+	Sandbox account
+		sb-m0ba43254037@business.example.com
+	Client ID
+		AZEMBNy9Zx8xarDtM_vEJUxkRCbIifWAOACo-_ePZNiNCbyjYkD8I43NiDWTbIetx2IXaZm7uJs6bCxE
+	Secret 
+		EJJCe9ohvsRT5-C77rqNs0vGWLWyykClya1vd8aIW8_UyfgeJxNm4zOp4XZ95TtYxue-_Us5ir6kBJPb
+	
+	Live PayPal account:
+		windcrestlions@gmail.com
+	Client ID:
+		ARk2X1sLuP61BZrBpri291GyDl5w-HRge3x4WAy_zQn9_PpXsScsieRZpWeg9N7uvuP5xAxcTjHB_kgV
+	Secret:
+		EL6WTdSoyFESHekuLri8rUhZgR-qb32gQAYYOGe5QfX9RulRLUV70a-mQsp8bIJWKgjH4-oud3qgYKRC
+	
+2) Add this to your checkout page:
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+3) Then create your java script here (Client Side REST): 
+	https://developer.paypal.com/demo/checkout/#/pattern/client
+   and paste it into your checkout page. update the sandbox and production client id values with the 
+   client id's created in step 1 above.
+
+4) Add a hidden variable on the page: 
+	    <input type="hidden" runat="server" id="amount" name="amount" value="7.99" />
+   that you can set from the code behind with the grand total including shipping.
+
+
+      sandbox: 'AbjGcdk3l6VJsSHrk_MPNdgixsNL4hCgMejk9Wk1F6GHwVUIU6vinRTZ70I4_h-mLUGyw_a3e2SXzkw4',
+   production: 'AdEoadu2-_rUZi2M9LUlzfqRNF45-t1JKlG_B3YoBMStdZ1H6rTWBzUKIOL2OqGnygYijP750gp8reV7'
+
+   amount: { total: '<%=sTotalPayPalCharge%>', currency: 'USD' }
+
+   <script>
+    paypal.Button.render({
+
+        env: 'production', // Specify 'sandbox' for the test environment
+
+        payment: function() {
+            // Set up the payment here, when the buyer clicks on the button
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.redirect();
+        },
+
+        onCancel: function(data, actions) {
+            return actions.redirect();
+        }
+
+    }, '#paypal-button');
+</script>
+
+
+
+
+
+
+    <script>
+        paypal.Button.render({
+
+            env: 'production', // sandbox | production
+
+            // Specify the style of the button
+            style: {
+                layout: 'vertical',  // horizontal | vertical
+                size: 'medium',     // medium | large | responsive
+                shape: 'rect',      // pill | rect
+                color: 'gold'       // gold | blue | silver | black
+            },
+
+            funding: {
+                //allowed: [paypal.FUNDING.CARD, paypal.FUNDING.CREDIT],
+                allowed: [paypal.FUNDING.CARD],
+                disallowed: []
+            },
+
+            client: {
+                sandbox: 'AbjGcdk3l6VJsSHrk_MPNdgixsNL4hCgMejk9Wk1F6GHwVUIU6vinRTZ70I4_h-mLUGyw_a3e2SXzkw4',
+                production: 'AdEoadu2-_rUZi2M9LUlzfqRNF45-t1JKlG_B3YoBMStdZ1H6rTWBzUKIOL2OqGnygYijP750gp8reV7'
+            },
+
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    payment: {
+                        transactions: [
+                            {
+                                amount: {
+                                    total: '<%=sHighBid%>', currency: 'USD',
+                                    details: 
+                                    {
+                                        subtotal: '0',
+                                        shipping: '0'
+                                    }
+                                },
+                                item_list:
+                                {
+                                    items: [
+                                        <%=sItemList%>
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                });
+            },
+
+            // Wait for the payment to be authorized by the customer
+            onAuthorize: function (data, actions) {
+
+                // Get the payment details
+                return actions.payment.get().then(function (data) {
+
+                    // Display the payment details and a confirmation button
+                    var email = data.payer.payer_info.email;
+                    var shipping = data.payer.payer_info.shipping_address;
+                    var recipient = shipping.recipient_name;
+                    var addr = shipping.line1;
+                    var city = shipping.city;
+                    var state = shipping.state;
+                    var zip = shipping.postal_code;
+                    var country = shipping.country_code;
+
+                    // Execute the payment
+                    return actions.payment.execute().then(function () {
+                        location.href = 'thankyou.aspx?o=<%=sId%>&i=1&a=' + addr + '&c=' + city + '&s=' + state + '&z=' + zip + '&e=' + email + '&r=' + recipient;
+                    });
+                });
+            },
+
+            onCancel: function(data, actions) {
+                location.href = 'thankyou.aspx?o=<%=sId%>&i=2';
+            }
+
+        }, '#paypal-button-container');
+    </script>
+	

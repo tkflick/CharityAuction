@@ -1,0 +1,30 @@
+
+Lions Blue: #003D7E
+Lions Yellow: #FFC20D
+
+INSERT INTO tUserInfo([FirstName], [LastName], [Email], [UserName], [Password], [PassExpire], [ActivationCode], [UserVerified], [CustomerID]) 
+VALUES('Timothy', 'Flick', 'tkflick@yahoo.com', 'tkflick', 'C610111014104515468', 11/07/2020, 6818904,'N', 'tkflick'}
+
+INSERT INTO tUserInfo([FirstName], [LastName], [Email], [UserName], [Password], [PassExpire], [ActivationCode], [UserVerified], [CustomerID]) 
+VALUES('Timothy', 'Flick', 'tkflick@yahoo.com', 'tkflick', 'C610111014104515468', '11/07/2020', 3344989,'N', 'tkflick'
+
+INSERT INTO tUserInfo([FirstName], [LastName], [Email], [UserName], [Password], [PassExpire], [ActivationCode], [UserVerified], [CustomerID]) 
+VALUES('Timothy', 'Flick', 'tkflick@yahoo.com', 'tkflick', 'C610111014104515468', '11/07/2020', 7802544,'N', 'tkflick')
+
+messaging.aspx.vb:
+Hello Timothy Flick, thank you for registering to use RentalTrax Online.
+
+To activate your account, please visit this link: <a href='http://www.AutionTrax.com/UserAdmin/VerifyUser.aspx?u=3&i=7802544'>Activate Here</a>.
+
+If this link does not work, please copy/paste the following link into your browser's address bar:
+http://www.AuctionTrax.com/UserAdmin/VerifyUser.aspx?u=3&i=7802544.
+Thank you.
+~Webmaster, RentalTrax}
+
+
+SELECT i.item_id, i.item_name, i.item_description, i.item_date_open, i.item_date_close, i.item_seller, i.item_location,    
+	(SELECT TOP 1 item_amount FROM dbo.tbBids WHERE tbBids.item_id = i.item_id ORDER BY item_amount DESC) AS item_amount,    
+	(SELECT TOP 1 item_bidder FROM dbo.tbBids WHERE tbBids.item_id = i.item_id ORDER BY item_amount DESC) AS item_bidder,    
+	(SELECT COUNT(0) FROM dbo.tbBids WHERE tbBids.item_id = i.item_id) AS item_bids,    
+	'Everything Else' as cat_name 
+FROM tbItems as i 

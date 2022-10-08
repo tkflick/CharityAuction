@@ -1,0 +1,22 @@
+Bank Account
+Account Number: 9998377453122
+Routing Number: 325272063
+
+Credit Card
+Credit Card Number: 4032032239371948
+Credit Card Type: VISA
+Expiration Date: 09/2025
+
+PayPal Balance: 5000.00 USD
+
+--------------------------------------------------------
+
+John Doe
+Email ID: sb-v59kg3274077@personal.example.com
+System Generated Password: 3u[B^qCR
+
+Phone Number: 4083716370
+Account type: Personal
+Account ID: 7V26SC367ZHRY
+Status: Verified
+Country: US
